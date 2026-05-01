@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Rotating Text</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="container"></div>
+    
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    
+    <script type="module">
+        import { initScene, setAnimationLoop } from './space.js';
+        import { initControl } from './control.js';
+        
+        // 启动应用
+        function init() {
+            // 初始化场景
+            const sceneAPI = initScene('container');
+            
+            // 初始化控制
+            const controlAPI = initControl(sceneAPI);
+            
+            // 设置动画循环回调
+            setAnimationLoop(() => {
+                controlAPI.update();
+            });
+            
+            console.log('3D Rotating Text application started successfully!');
+            console.log('Instructions:');
+            console.log('- Click on the left side to rotate counter-clockwise from left');
+            console.log('- Click on the right side to rotate clockwise from right');
+            console.log('- Wait at least 0.4 seconds between clicks');
+        }
+        
+        // 启动
+        init();
+    </script>
+</body>
+</html>
